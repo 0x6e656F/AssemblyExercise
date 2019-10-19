@@ -20,17 +20,17 @@ main endp
 ;---------------------------------------------------------
 ; ProcRotateArray
 ;
-; Rotates the Array of  the array [10, 20, 30, 40] would be transferred into [40, 10, 20, 30]
+; Rotates the Array. Example [10, 20, 30, 40] would be transferred into [40, 10, 20, 30]
 ;---------------------------------------------------------
 ProcRotateArray proc uses ESI ECX
         MOV ECX, Lengthof Array - 1             ;Count Down
         MOV ESI, 0                                              ;Starting value
         Rotate:
-                Push Array[ESI*4]                       ;Push the ith value on the stack
-                Push Array[ECX*4]                       ;Push the (LengthArray - ith) value on the stack
-                Pop Array[ESI*4]                        ;Pop the (LengthArray - ith) value on to the (ith) memory location
-                Pop Array[ECX*4]                        ;Pop the ith value on to the (LengthArray - ith) memory locatio
-                inc ESI
+                Push Array[ESI*TYPE Array]                       ;Push the ith value on the stack
+                Push Array[ECX*TYPE Array]                       ;Push the (LengthArray - ith) value on the stack
+                Pop Array[ESI*TYPE Array]                        ;Pop the (LengthArray - ith) value on to the (ith) memory location
+                Pop Array[ECX*TYPE Array]                        ;Pop the ith value on to the (LengthArray - ith) memory location
+                inc ESI                                 ;Increment ESI (ith value)
         Loop Rotate
 ProcRotateArray endp
 end main
