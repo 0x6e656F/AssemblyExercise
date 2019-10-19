@@ -23,7 +23,7 @@ main endp
 ; Receives: ECX. Must be greater than 0.
 ; Returns:  EAX: the sum of the fibonacci value at ECX. 
 ;---------------------------------------------------------
-ProcSumFibonacci proc
+ProcSumFibonacci proc uses EBX
 	
 	mov EAX, 0
 	SumFibonacci:
@@ -45,10 +45,7 @@ ProcSumFibonacci endp
 ; Receives: ECX. Must be greater than 0.
 ; Returns:  EAX: the fibonacci value at ECX. 
 ;---------------------------------------------------------
-ProcFibonacci proc
-	Push EBX			;Save value of EBX
-	Push EDX			;Save value of EDX
-
+ProcFibonacci proc uses EBX EDX
 	MOV EBX, 0
 	MOV EAX, 1
 	MOV EDX, 0
@@ -57,9 +54,6 @@ ProcFibonacci proc
 		MOV EDX, EBX	;Added so that when n = 2 EAX be 1;
 		MOV EBX, EAX	;Set next (n-2) to the current (n-1)
 	LOOP Fibonacci
-	
-	POP EDX				;Restore EDX
-	POP EBX				;Restore EBX
 	
 	ret
 ProcFibonacci endp
