@@ -8,7 +8,7 @@ comment !
 ExitProcess proto,dwExitCode:dword
 
 .data
-Array BYTE 1234h,3456h,5678h,7890h
+Array WORD 1234h,3456h,5678h,7890h
 Count DWORD ?
 .code
 main proc
@@ -25,7 +25,7 @@ main proc
 			xchg BYTE PTR Array[ESI], Al			;exchange the current byte in current item with AL
 			Inc ESI						;Increment ESI
 		Loop L2						
-		movzx ECX, Count					;Recover ECX from count
+		mov ECX, Count						;Recover ECX from count
 		add ESI, TYPE Array					;Go to the next pair
 	Loop L1
 	invoke ExitProcess,0
