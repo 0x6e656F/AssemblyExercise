@@ -13,8 +13,8 @@ Count DWORD ?
 .code
 main proc
 	
-	mov ECX, (LENGTHOF Array) / 2 
-	mov ESI, 0
+	mov ECX, (LENGTHOF Array) / 2					;Initialize ECX (Counter) 
+	mov ESI, 0							;Initialize ESI (Index)
 	L1:
 		
 		mov Count, ECX						;Save ECX into Count
