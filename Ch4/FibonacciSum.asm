@@ -27,13 +27,13 @@ ProcSumFibonacci proc uses EBX
 	
 	mov EAX, 0
 	SumFibonacci:
-		Push EAX							;Save EAX as it is returned by fibonacci functions
-		Push ECX							;Save ECX value as it would be used up by Fibonacci Func
-			call ProcFibonacci				;Calculate the fibonacci for the given number ECX
-		mov EBX, EAX						;Move the fionacci value to EBX
-		Pop ECX								;Restore ECX
-		Pop EAX								;Restore EAX
-		Add EAX, EBX						;Add EAX with the Fibonacci Value (EBX)
+		Push EAX			;Save EAX as it is returned by fibonacci functions
+		Push ECX			;Save ECX value as it would be used up by Fibonacci Func
+			call ProcFibonacci	;Calculate the fibonacci for the given number ECX
+		mov EBX, EAX			;Move the fionacci value to EBX
+		Pop ECX				;Restore ECX
+		Pop EAX				;Restore EAX
+		Add EAX, EBX			;Add EAX with the Fibonacci Value (EBX)
 	Loop SumFibonacci
 	ret
 ProcSumFibonacci endp
@@ -50,9 +50,9 @@ ProcFibonacci proc uses EBX EDX
 	MOV EAX, 1
 	MOV EDX, 0
 	Fibonacci:
-		ADD EAX, EDX	;(n - 1) + (n - 2) where (n-1) is EAX and (n-2) is EDX
-		MOV EDX, EBX	;Added so that when n = 2 EAX be 1;
-		MOV EBX, EAX	;Set next (n-2) to the current (n-1)
+		ADD EAX, EDX			;(n - 1) + (n - 2) where (n-1) is EAX and (n-2) is EDX
+		MOV EDX, EBX			;Added so that when n = 2 EAX be 1;
+		MOV EBX, EAX			;Set next (n-2) to the current (n-1)
 	LOOP Fibonacci
 	
 	ret
