@@ -1,0 +1,51 @@
+comment !
+	Task: Write a program that clears the screen, locates the cursor near the middle of the screen, prompts the user for two integers, adds the integers, and displays their sum
+!
+include Irvine32.inc
+.data
+prompt BYTE "Enter an integer: ", 0
+SumPrompt BYTE "The sum of the two integers is ", 0
+int1 DWORD ?
+.code
+main proc
+     
+     call GetUserInt 
+     mov int1, EAX			;Save information to int1
+	 call GetUserInt
+     add EAX, int1			;add int1 with eax and save to eax
+     call CursorToMiddle		;move cursor to middle
+     mov EDX, OFFSET SumPrompt		;Move SumPrompt memory offset into EDX
+     call WriteString			;Write the Sumprompt to console
+     call WriteInt			;Write the int to console.
+
+     call crlf				;go to next line
+	 call crlf
+     call WaitMsg			;Wait until user press a key.
+	invoke ExitProcess,0
+main endp
+;--------------------------------------
+;Summary: Prompts user to enter integer
+;Returns EAX
+;--------------------------------------
+GetUserInt Proc
+	call CursorToMiddle		;Move cursor to middle
+     mov EDX, OFFSET prompt		;Move prompt memory offset into EDX
+     call WriteString			;Write the prompt to console
+     call ReadInt			;Read the input of user into EAX
+	ret
+GetUserInt endp
+
+;--------------------------------------
+;Summary: Clears screen and moves the cursor to the middle of the screen
+;Receives: nothing
+;returns: nothing
+;--------------------------------------
+CursorToMiddle proc
+     call clrscr
+     mov DH, 12
+     mov DL, 20
+     call Gotoxy
+     ret
+CursorToMiddle endp
+end main
+
