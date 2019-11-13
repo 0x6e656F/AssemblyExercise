@@ -63,17 +63,16 @@ main endp
 ;Receives: ESI (Offset of Array), ECX (N), EBX (J), EDX (K)
 ;Returns: Selected Sums into EAX
 ;-------------------------------------------
-SumRange Proc Uses ECX EBX EDX EDI
+SumRange Proc Uses ECX EBX EDX 
         mov EAX, 0
-        mov EDI, 0
         L1:
-                cmp DWORD PTR [ESI + EDI*4], EDX                ;compare with k
-                jg L2                                           ;If greater than k go to L2
-                        cmp DWORD PTR [ESI + EDI*4], EBX        ;compare with j
-                jl L2                                           ;if less than j go to L2
-                        add EAX, DWORD PTR [ESI + EDI*4]
+                cmp [ESI], EDX                	;compare with k
+                jg L2                      	;If greater than k go to L2
+                        cmp [ESI], EBX       	;compare with j
+                jl L2                	  	;if less than j go to L2
+                        add EAX, [ESI]
                 L2:
-                INC EDI
+                Add ESI, 4
         Loop L1
         ret
 SumRange Endp
